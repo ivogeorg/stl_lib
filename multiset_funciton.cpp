@@ -1,5 +1,6 @@
 #include <iostream>
 #include <set>
+#include <algorithm>
 
 using namespace std;
 
@@ -20,14 +21,20 @@ int main()
     s1.insert(510);
     s1.insert(100);
 
+    auto print = [](const int &n) { std::cout << n << ' '; };
 
     // printing set s1
     multiset<int, greater<int>>::iterator itr;
     cout << "\nThe multiset s1 is : \n";
-    for (itr = s1.begin(); itr != s1.end(); itr++) {
-        cout << *itr << " ";
-    }
-    cout << endl;
+    // for (itr = s1.begin(); itr != s1.end(); itr++) {
+    //     cout << *itr << " ";
+    // }
+    // cout << endl;
+
+    // This works with C++17 and later
+    // Currently we are using C++14
+    for_each(s1.begin(), s1.begin(), print);
+    cout << '\n';
 
     // assigning the elements from s1 to s2
     multiset<int> s2(s1.begin(), s1.end());
